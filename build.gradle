@@ -1,0 +1,27 @@
+plugins {
+	id 'java'
+}
+
+version = '1.0'
+sourceCompatibility = 17
+
+repositories {
+	mavenCentral()
+}
+
+task build_exe(type: Exec) {
+	workingDir 'D:\\Desk\\Rep\\Exam'
+	commandLine "launch4jc.exe", "exec.xml"
+}
+
+jar {
+	baseName = "Exam"
+	manifest {
+		attributes "Main-Class": "Main"
+	}
+}
+
+task runnn_exe {
+	dependsOn(jar)
+	dependsOn(build_exe)
+}
